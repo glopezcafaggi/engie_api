@@ -1,0 +1,50 @@
+project:
+
+Engie -  Wind turbine Energy prediction output and monitoring - api
+
+Study Case :
+In the scope of Engie green Energy transition goals for 2030, we propose a fully functional api for 
+wind turbine Energy forecast through weather data. 
+
+
+Objective:
+-api for technical staff in the forecast of Energy production and wind farm localization.
+
+
+Data:
+Data from 4 wind turbines from Engie La-Haute Borne,France wind farm.
+Consisting in sensor data from the wind turbine itself ans outside wheather conditions.
+
+ https://opendata-renewables.engie.com/explore/index
+
+(Currently, the link is unavailable, however data is available in other public repositories.)
+
+Model:
+We propose to design a convolutional neural network in the context of time series regression for the variable
+Active power (kW) (and possibly other internal sensor data).
+
+
+API:
+- user friendly api for technical staff.
+- input weather conditions -> output temporamlly active power.
+- visualisation interface.
+- save/load to SQL database of prediction/tests.
+
+
+Dev:
+- python
+- flask
+- PostgreSQL
+
+References: 
+- engie.com 
+- https://www.researchgate.net/publication/344319281_Wind_Farm_and_Resource_Datasets_A_Comprehensive_Survey_and_Overview
+- CARE to Compare: A real-world dataset for anomaly detection in wind turbine data  
+	https://arxiv.org/abs/2404.10320
+- Wind Turbine SCADA Data For Early Fault Detection 
+	https://zenodo.org/records/10958775
+
+
+
+
+ 
