@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np 
 
 def get_data_dict(name_list: list) -> dict:
     """Reads data from raw directory and returns {index: dataframe}."""
