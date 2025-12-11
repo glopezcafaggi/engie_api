@@ -93,3 +93,4 @@ def plot_power_year(year_datas):
 
     plt.tight_layout()
     plt.show()
+
