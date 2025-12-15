@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block head %} {% endblock %}
+
+{% block body %} 
+    <h1>getallby id</h1>
+    <div>
+        <p> results for data {{id}}</p>
+        <div>
+            <p>predictions</p>
+            <p>
+                {{data_html|safe}}
+            </p>
+            
+            
+        </div>
+    </div>
+
+    <div>
+        <form action="/home" id="form">
+            <button form="form">go home</button>
+        </form>
+    </div>
+{% endblock %}
