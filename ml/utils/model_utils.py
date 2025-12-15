@@ -108,9 +108,9 @@ def df_to_X(data, window_size=2):
 def predict(data, model):
     MM_scaler = MinMaxScaler()
     
-
     data_ml = pipeline_predict(data,  MM_scaler)
     X = df_to_X(data_ml)
     predictions = model.predict(X)
     data = pd.DataFrame(data=predictions, columns=['P_avg_pred'])
+    
     return data

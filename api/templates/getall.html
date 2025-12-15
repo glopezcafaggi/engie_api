@@ -5,4 +5,27 @@
 
 {% block body %} 
     <h1>getall</h1>
+    <div>
+        <p> wheather records in current db</p>
+        <div>
+            <p>here goes the recods</p>
+            <div> 
+                {% for id in records_keys %} 
+
+                <p>data id: {{id}}</p>
+
+                <form action="{{ url_for('getbyid', id=id) }}" >
+                    <button type="submit"> predict </button>
+                </form>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <form action="/home" id="form">
+            <button form="form">go home</button>
+        </form>
+    </div>
 {% endblock %}
