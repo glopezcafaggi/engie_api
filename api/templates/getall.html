@@ -3,13 +3,14 @@
 
 {% block head %} {% endblock %}
 
-{% block body %} 
-    <h1>getall</h1>
+{% block body %}
+    <div class="main">
+    <h1>Records in Db</h1>
     <div>
-        <p> wheather records in current db</p>
+        <p>Loading records</p>
         <div>
             <p>here goes the recods</p>
-            <div> 
+            <div class="readme"> 
                 {% for id in records_keys %} 
 
                 <p>data id: {{id}}</p>
@@ -22,10 +23,6 @@
             </div>
         </div>
     </div>
-
-    <div>
-        <form action="/home" id="form">
-            <button form="form">go home</button>
-        </form>
     </div>
+
 {% endblock %}

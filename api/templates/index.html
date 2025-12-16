@@ -4,15 +4,15 @@
 {% block head %} {% endblock %}
 
 {% block body %} 
-    <h1>home</h1>
-
-    <div>
-        this a description of the app
+    <div class="main">
+        <h2>Home</h1>
+        <h3>
+            Overview
+        </h3>
+        <div class="readme">
+            {{ content | safe }}
+        </div>
     </div>
 
-    <div>
-        <form action="/getall" id="form">
-            <button form="form">search the records</button>
-        </form>
-    </div>
+    
 {% endblock %}

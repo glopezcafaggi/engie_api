@@ -7,7 +7,7 @@
     <h1>getallby id</h1>
     <div>
         <p> results for data {{id}}</p>
-        <div>
+        <div class="readme">
             <p>predictions</p>
             <p>
                 {{data_html|safe}}
@@ -17,9 +17,4 @@
         </div>
     </div>
 
-    <div>
-        <form action="/home" id="form">
-            <button form="form">go home</button>
-        </form>
-    </div>
 {% endblock %}

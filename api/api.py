@@ -1,6 +1,10 @@
 from flask import Flask, render_template, url_for, redirect
 import pandas as pd
 
+import markdown
+from pathlib import Path
+
+
 from utils.api_utils import read_all_json, read_one_json
 
 app = Flask(__name__)
@@ -11,7 +15,14 @@ def index():
 
 @app.route('/home')
 def home():
-    return render_template('index.html')
+    md_path = Path("Readme.md")
+    md_text = md_path.read_text(encoding="utf-8")
+
+    html = markdown.markdown(
+        md_text,
+        extensions=["fenced_code", "tables", "toc"]
+    )
+    return render_template('index.html', content=html)
 
 @app.route('/getall')
 def getall():
