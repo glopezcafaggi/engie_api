@@ -9,6 +9,22 @@
     {% endblock %}
 </head>
 <body>
+    <div class="title_block">
+        <h1>Engie Wind Turbine Production and Wheater Analytics - API</h1>
+        <p>Proof of concept api for wind turbine Analytics and Forecast</p>
+    </div>
+    <div class="nav-bar">
+        <div>
+        <form action="/home" id="form1">
+            <button class="btn-primary" form="form1">go home</button>
+        </form>
+        </div>
+        <div>
+        <form action="/getall" id="form2">
+            <button class="btn-secondary" form="form2">search the records</button>
+        </form>
+        </div>
+    </div>
     {% block body %} {% endblock %}
 </body>
 </html>

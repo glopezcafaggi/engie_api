@@ -1,6 +1,54 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: antiquewhite;
+    background-color: #E6F8F4;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.title_block {
+    background-color: #00AAFF;
+    padding: 1.5em;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    background-color: #E6F8F4;
+    padding: 1em;
+}
+
+.main { 
+    padding: 2em;
+    background-color: #E6F8F4;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.readme {
+    padding: 2em;
+    background-color: #FFFFFF;
+}
+
+.btn-primary {
+    background-color: #00AAFF;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background-color: #23D2B5;
+    color: black;
+    border: 2px solid #23D2B5;
+    border-radius: 10px;
+    padding: 0.55rem 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
