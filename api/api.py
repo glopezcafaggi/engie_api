@@ -3,9 +3,18 @@ import pandas as pd
 
 import markdown
 from pathlib import Path
+from datetime import datetime
 
+from pymongo import MongoClient
+from bson import ObjectId
 
 from utils.api_utils import read_all_json, read_one_json
+
+
+client = MongoClient("mongodb://localhost:27017/")
+
+db = client["engie"]
+weather_collection = db["wheater_records"]
 
 app = Flask(__name__)
 
@@ -22,23 +31,42 @@ def home():
         md_text,
         extensions=["fenced_code", "tables", "toc"]
     )
+
     return render_template('index.html', content=html)
 
 @app.route('/getall')
 def getall():
-    records_keys = read_all_json().keys()
-    #print(records_keys)
-    #records = ['data1', 'data2']
+    #records_keys = read_all_json().keys()
+    
+    documents = weather_collection.find()
+    records_keys = [
+        [
+            str(doc["_id"]),
+            datetime.fromtimestamp(int(doc["raw"]["index"][0])),
+            datetime.fromtimestamp(int(doc["raw"]["index"][-1]))
+        ]
+        for doc in documents
+    ]
+
     return render_template('getall.html', records_keys=records_keys)
 
-@app.route('/get/<id>')
+@app.route('/get/<string:id>')
 def getbyid(id):
-    data = read_one_json(id)
-    #data_pred = power_prediction(data)
+    oid = ObjectId(id)
+    doc = weather_collection.find_one({"_id": oid})
 
-    data_html = data.head().to_html(classes="table table-striped", index=True) 
-    #data_pred_html = data_pred.to_html(classes="table table-striped", index=True) 
-    return render_template('getbyid.html', id=id, data_html=data_html)
+    if not doc:
+        return "Record not found", 404
+
+    raw = doc['raw']
+    data = pd.DataFrame(
+        data = raw["data"]
+        , columns = raw['columns']
+        , index =  raw['index']  
+    )
+    data_html = data.to_html(classes="table table-striped", index=True) 
+
+    return render_template('getbyid.html', id=id, data = data_html)
 
 if __name__ == '__main__':
     app.run(debug=True)

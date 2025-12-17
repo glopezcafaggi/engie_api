@@ -11,11 +11,13 @@
         <div>
             <p>here goes the recods</p>
             <div class="readme"> 
-                {% for id in records_keys %} 
+                {% for key in records_keys %} 
+                <hr>
+                <p>data db collection='weather_collection', _id: {{key[0]}}</p>
+                <p>period start: {{key[1]}} </p>
+                <p>period end: {{key[2]}}</p>
 
-                <p>data id: {{id}}</p>
-
-                <form action="{{ url_for('getbyid', id=id) }}" >
+                <form action="{{ url_for('getbyid', id=key[0]|string) }}" >
                     <button type="submit"> predict </button>
                 </form>
 
