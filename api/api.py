@@ -9,7 +9,8 @@ from pymongo import MongoClient
 from bson import ObjectId
 
 from utils.api_utils import read_all_json, read_one_json
-
+from ml.ml_utils.pipeline import predictions
+from keras.models import load_model
 
 client = MongoClient("mongodb://localhost:27017/")
 
@@ -64,9 +65,17 @@ def getbyid(id):
         , columns = raw['columns']
         , index =  raw['index']  
     )
-    data_html = data.to_html(classes="table table-striped", index=True) 
 
-    return render_template('getbyid.html', id=id, data = data_html)
+    model = load_model('ml/models/model1.keras')
+    data_pred = predictions(data, model)
+    print(data_pred.head(1))
+    print(data_pred.shape)
+
+    data_html = data.head().to_html(classes="table table-striped", index=True)
+    data_pred_html = data_pred.to_html(classes="table table-striped", index=True)
+    
+    return render_template('getbyid.html', id=id, data = data_html, data_pred = data_pred_html)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
