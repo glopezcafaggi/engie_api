@@ -8,7 +8,7 @@ body {
 
 .title_block {
     background-color: #00AAFF;
-    padding: 1.5em;
+    padding: 2dvh;
 }
 
 .nav-bar {
@@ -16,19 +16,21 @@ body {
     flex-direction: row;
     gap: 1em;
     background-color: #E6F8F4;
-    padding: 1em;
+    padding: 2em;
 }
 
 .main { 
-    padding: 2em;
+    padding: 3em;
+    gap: 3em;
     background-color: #E6F8F4;
     border-radius: 12px;
     padding: 1.25rem;
 }
 
 .readme {
-    padding: 2em;
+    padding: 3em;
     background-color: #FFFFFF;
+    border-radius: 12px;
 }
 
 .btn-primary {

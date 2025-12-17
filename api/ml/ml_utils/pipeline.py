@@ -50,5 +50,6 @@ def predictions(data, model):
     data_ml = feature_pipeline(data)
     X  = df_to_X_y(data_ml)[0]
     array = model.predict(X).ravel()
-    data_pred = pd.DataFrame({'P_avg_predictions': array})
+    #data_pred = pd.DataFrame({'P_avg_predictions': array})
+    data_pred = pd.DataFrame({'P_avg_predictions': array}, index = pd.to_datetime(data_ml.index[:-2], unit='s' ) )
     return data_pred

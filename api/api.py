@@ -12,6 +12,10 @@ from utils.api_utils import read_all_json, read_one_json
 from ml.ml_utils.pipeline import predictions
 from keras.models import load_model
 
+from utils.graph_utils import power_plot, dist_plot, hist_plot, polar_wind, plot1
+import plotly.express as px
+import plotly.io as pio
+
 client = MongoClient("mongodb://localhost:27017/")
 
 db = client["engie"]
@@ -65,16 +69,54 @@ def getbyid(id):
         , columns = raw['columns']
         , index =  raw['index']  
     )
+    data.index =  pd.to_datetime(data.index, unit='s')
 
     model = load_model('ml/models/model1.keras')
     data_pred = predictions(data, model)
-    print(data_pred.head(1))
-    print(data_pred.shape)
+    #print(data_pred.head(1))
+    #print(data_pred.shape)
+
+    pwr_plt = power_plot(data_pred)
+    dst_plt = dist_plot(data)
+    hst_plt = hist_plot(data)
+    plr_wind = polar_wind(data)
+
+    pwr_plt_html = pio.to_html(
+        pwr_plt,
+        full_html=False,
+        include_plotlyjs="cdn"
+    )
+
+    dst_plt_html = pio.to_html(
+        dst_plt,
+        full_html=False,
+        include_plotlyjs="cdn"
+    )
+
+    hst_plt_html = pio.to_html(
+        hst_plt,
+        full_html=False,
+        include_plotlyjs="cdn"
+    )
+
+    plr_wind_html = pio.to_html(
+        plr_wind,
+        full_html=False,
+        include_plotlyjs="cdn"
+    )
 
     data_html = data.head().to_html(classes="table table-striped", index=True)
-    data_pred_html = data_pred.to_html(classes="table table-striped", index=True)
+    data_pred_html = data_pred.head().to_html(classes="table table-striped", index=True)
     
-    return render_template('getbyid.html', id=id, data = data_html, data_pred = data_pred_html)
+    return render_template(
+        'getbyid.html'
+        , id=id
+        , data = data_html
+        , data_pred = data_pred_html
+        , pwr_plt_html = pwr_plt_html
+        , dst_plt_html = dst_plt_html
+        , hst_plt_html = hst_plt_html
+        , plr_wind_html = plr_wind_html   )
 
 
 if __name__ == '__main__':

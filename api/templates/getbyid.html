@@ -4,22 +4,50 @@
 {% block head %} {% endblock %}
 
 {% block body %} 
-    <h1>getallby id</h1>
-    <div>
-        <p> results for data {{id}}</p>
+    <div class="main">
+    <h1>Report by id</h1>
+    <div >
+        <p> results for data "_id" :  {{id}}</p>
         <div class="readme">
-            <p>predictions</p>
+            <h3>REPORT</h3>
             
+            <hr>
+            data sample:
             <p>
                 {{data|safe}}
             </p>
-
+            
+            <hr>
+            Power prediction sample:
             <p>
                 {{data_pred|safe}}
             </p>
-            
-            
+
+            <hr>
+            Power Output in cycle
+            <p>
+                {{pwr_plt_html|safe}}
+            </p>
+
+            <hr>
+            Distribution Power Output, Wind_speed
+            <p>
+                {{dst_plt_html|safe}}
+            </p>
+
+            <hr>
+            Power Distribution in observations
+            <p>
+                {{hst_plt_html|safe}}
+            </p>
+
+            <hr>
+            Polar visualisation power Output vs Wind direction
+            <p>
+                {{plr_wind_html|safe}}
+            </p>
         </div>
+    </div>
     </div>
 
 {% endblock %}
